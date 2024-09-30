@@ -33,16 +33,31 @@ public class Matrix {
         }
     }
     public void addElement(int i, int j, ComplexNumber num) {
+        //добавление элемента по индексам i, j
         this.matrix[i][j] = num;
     }
-    /*public Matrix sum(Matrix another) {
-        Matrix result = new Matrix(this.row, this.column);
-        if ((this.column == another.getColumn()) && (this.row == another.getRow())) {
+    public Matrix sum(Matrix another) {
+        //Суммирование матриц, размер должен быть одинаковый
+        if (this.row == another.getRow() && this.column == another.getColumn()) {
+            Matrix result = new Matrix(this.row, this.column);
             for (int i = 0; i < this.row; ++i) {
                 for (int j = 0; j < this.column; ++j) {
-
+                    result.addElement(i, j, this.matrix[i][j].sum(another.element(i, j)));
                 }
             }
+            return result;
         }
-    }*/
+        System.out.println("Sizes of matrixes are not the same!");
+        return this;
+    }
+    public Matrix transposition() {
+        //транспонирование матрицы
+        Matrix result = new Matrix(this.column, this.row);
+        for (int i = 0; i < row; ++i) {
+            for (int j = 0; j < column; ++j) {
+                result.addElement(j, i, this.element(i,j));
+            }
+        }
+        return result;
+    }
 }
