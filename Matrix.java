@@ -60,4 +60,55 @@ public class Matrix {
         }
         return result;
     }
+    public double determinant() {
+        //поиск определителя
+        if (this.row == this.column) {
+
+        }
+        return 0;
+    }
+    private Matrix det() {
+        Matrix result = new Matrix(1, 1);
+        if (this.row == 3) {
+            result.addElement(0, 0, ((this.matrix[0][0].multiplication(this.matrix[1][1])).multiplication(this.matrix[2][2])).sum((this.matrix[0][0].multiplication(this.matrix[1][1])).multiplication(this.matrix[2][2])));
+        }
+    }
+    private Matrix simplify(int i, int j) {
+        //нужно для рекурсивного подсчета определителя матрицы, с помощью минора.
+        Matrix result = new Matrix(this.row-1, this.column-1);
+        for (int a = 0; a < this.row; ++a) {
+            for (int b = 0; b < this.column; ++b) {
+                if (a < i && b < j) {
+                    result.addElement(a, b, this.element(a, b));
+                }
+                else if (a > i && b > j) {
+                    result.addElement(a-1, b-1, this.element(a, b));
+                }
+                else if (a > i && b < j) {
+                    result.addElement(a-1, b, this.element(a, b));
+                }
+                else if (a < i && b > j) {
+                    result.addElement(a, b-1, this.element(a, b));
+                }
+            }
+        }
+        return result;
+    }
+    /*public Matrix multiplication(Matrix another) {
+        if (this.row == another.column) {
+            Matrix result = new Matrix(this.row, another.column);
+            int point = 0;
+            for (int i = 0; i < this.row; ++i) {
+                ComplexNumber save = new ComplexNumber(0,0);
+                for (int j = 0; j < this.column; ++j) {
+                    save.sum(this.element(i,j).multiplication(another.element(j, i)));
+                }
+                result.addElement((int)(point / this.row), point % another.column, save);
+                ++point;
+            }
+            return result;
+        }
+        System.out.println("this matrix cant be multiplied");
+        return this;
+    }*/
 }
