@@ -28,8 +28,14 @@ public class ComplexNumber {
         //суммирование комплексных чисел
         return new ComplexNumber(this.getX() + another.getX(), this.getY() + another.getY());
     }
-    public ComplexNumber subtraction(ComplexNumber another) {
+    public ComplexNumber subtract(ComplexNumber another) {
         //вычитание
         return new ComplexNumber(this.getX() - another.getX(), this.getY() - another.getY());
+    }
+    public ComplexNumber divide(ComplexNumber another) {
+        if (another.getX() != 0 && another.getY() == 0) {
+            return new ComplexNumber(this.getX() / another.getX(), this.getY() / another.getX());
+        }
+        return this;
     }
 }
