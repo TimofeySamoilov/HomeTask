@@ -64,5 +64,6 @@ public class Main {
         System.out.println("-----");
         //Matrix.print(n1.multiplication(n2));
         Matrix.print(n1.divide(n2));
+
     }
 }
