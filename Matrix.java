@@ -7,6 +7,7 @@ public class Matrix {
         this.column = column;
         for (int i = 0; i < row; ++i) {
             for (int j = 0; j < column; ++j) {
+                //заполняем матрицу
                 this.matrix[i][j] = new ComplexNumber(0, 0);
             }
         }
@@ -52,7 +53,7 @@ public class Matrix {
         return this;
     }
     public Matrix subtract(Matrix another) {
-        //Суммирование матриц, размер должен быть одинаковый
+        //Вычитание матриц, размер должен быть одинаковый
         if (this.row == another.getRow() && this.column == another.getColumn()) {
             Matrix result = new Matrix(this.row, this.column);
             for (int i = 0; i < this.row; ++i) {
@@ -80,7 +81,7 @@ public class Matrix {
         return this.determinant(1);
     }
     private ComplexNumber determinant(int a) {
-        //рекурсивно считает определитель матрицы
+        //рекурсивно считает определитель матрицы, переменная "a" представляет +-1
         if (this.row == 1) {
             return this.element(0, 0);
         }
