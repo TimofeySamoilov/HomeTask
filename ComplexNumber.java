@@ -33,9 +33,17 @@ public class ComplexNumber {
         return new ComplexNumber(this.getX() - another.getX(), this.getY() - another.getY());
     }
     public ComplexNumber divide(ComplexNumber another) {
+        //деление комплексных чисел
         if (another.getX() != 0 && another.getY() == 0) {
+            //если нет мнимой части
             return new ComplexNumber(this.getX() / another.getX(), this.getY() / another.getX());
         }
+        if (another.getY() != 0) {
+            //если есть мнимая часть
+            double a = this.x, b = this.y, c = another.getX(), d = another.getY();
+            return new ComplexNumber((a*c+b*d)/(c*c+d*d), (b*c-a*d)/(c*c+d*d));
+        }
+        System.out.println("На 0 делить нельзя");
         return this;
     }
 }

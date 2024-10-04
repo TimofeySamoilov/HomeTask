@@ -18,6 +18,7 @@ public class Matrix {
         return this.column;
     }
     public ComplexNumber element(int i, int j) {
+        //возвращает i,j элемент
         return this.matrix[i][j];
     }
     static public void print(Matrix m) {
@@ -75,6 +76,7 @@ public class Matrix {
         return result;
     }
     public ComplexNumber det() {
+        //находит определитель
         return this.determinant(1);
     }
     private ComplexNumber determinant(int a) {
@@ -86,6 +88,7 @@ public class Matrix {
             return (this.element(0,0).multiplication(this.element(1,1)).subtract(this.element(0, 1).multiplication(this.element(1, 0)))).multiplication(new ComplexNumber(a, 0));
         }
         ComplexNumber result = new ComplexNumber(0, 0);
+        //если матрица имеет размер больше, чем 2 на 2, то считает рекурчивно методом миноров
         for (int i = 0; i < this.column; ++i) {
             result = result.sum(this.element(0, i).multiplication(this.simplyfy(0, i).determinant(a)));
             a *= -1;
@@ -114,6 +117,7 @@ public class Matrix {
         return result;
     }
     public Matrix multiplication(Matrix another) {
+        //перемножение матриц
         if (this.column == another.row) {
             Matrix result = new Matrix(this.row, another.column);
             for (int i = 0; i < this.row; ++i) {
@@ -132,6 +136,7 @@ public class Matrix {
         return this;
     }
     public Matrix reverse() {
+        //обратная матрица
         if ((this.row == this.column) && (this.det().getX() != 0 || this.det().getY() != 0)) {
             Matrix result = new Matrix(this.row, this.column);
             for (int i = 0; i < this.row; ++i) {
@@ -154,6 +159,7 @@ public class Matrix {
         return this;
     }
     public Matrix divide(Matrix another) {
+        //разделяет одну на другую
         return this.multiplication(another.reverse());
     }
 }
